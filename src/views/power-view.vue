@@ -17,7 +17,9 @@
       <RightBottomSvg :dots="exceptionMonitoring" />
     </div>
 
-    <div class="center"></div>
+    <div class="center">
+      <CenterSvg />
+    </div>
     <div class="bottom"></div>
   </main>
 </template>
@@ -28,6 +30,7 @@ import PieEcharts from "../components/pie-echarts.vue"
 import LineEcharts from "../components/line-echarts.vue"
 import BarEcharts from "../components/bar-echarts.vue"
 import RightBottomSvg from "../components/right-bottom-svg.vue"
+import CenterSvg from "../components/center-svg.vue"
 import { getPowerScreenData } from "../services"
 import { 
   chargingPileData, 
@@ -132,7 +135,6 @@ getPowerScreenData().then(res => {
   bottom: 272px;
   width: 823px;
   height: 710px; 
-  border: 5px solid pink;
 }
 
 .bottom {
