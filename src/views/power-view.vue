@@ -2,7 +2,9 @@
   <main class="screen-bg">
     <div class="header"></div>
 
-    <div class="left-top"></div>
+    <div class="left-top">
+      <PieEcharts :echartDatas="charginPile" />
+    </div>
     <div class="left-bottom"></div>
 
     <div class="right-top"></div>
@@ -15,6 +17,11 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+import PieEcharts from "../components/pie-echarts.vue"
+import { chargingPileData } from "../config/home-data"
+
+let charginPile = ref(chargingPileData)
 </script>
 
 <style scoped>
