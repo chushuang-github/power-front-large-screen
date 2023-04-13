@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue"
+import { onMounted, ref, watch } from "vue"
 import useEcharts from "../hooks/useEcharts"
 
 const props = defineProps({
@@ -21,14 +21,24 @@ const props = defineProps({
   }
 })
 
+// 监听echartDatas的变化
+watch(() => props.echartDatas, (newValue) => {
+  setupEchart(newValue)
+})
+
 let divRef = ref(null)
 let hyChart = null
 onMounted(() => {
-  // vue里面的hooks函数，可以在函数里面写
-  hyChart = useEcharts(divRef.value)
-  let option = getOption(props.echartDatas)
-  hyChart.setOption(option)
+  setupEchart(props.echartDatas)
 })
+
+function setupEchart(echartDatas) {
+  if(!hyChart) {
+    hyChart = useEcharts(divRef.value)
+  }
+  let option = getOption(echartDatas)
+  hyChart.setOption(option)
+}
 
 // 配置项
 function getOption(pieDatas = []) {

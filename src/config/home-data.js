@@ -1,4 +1,4 @@
-// 饼图数据
+// 饼图数据 (充电桩饱和比例)
 export const chargingPileData = [
   {
     value: 100,
@@ -35,5 +35,17 @@ export const chargingPileData = [
     name: "珠海占比",
     percentage: "40%",
     color: "#00C6FF",
+  }
+]
+
+// 折线图 (流程监控)
+export const precessMonitoringData = [
+  {
+    name: "正常",
+    data: [220, 182, 191, 234, 290, 330, 310, 201, 154, 190, 330, 410]
+  },
+  {
+    name: "异常",
+    data: [20, 12, 11, 24, 90, 330, 10, 1, 154, 90, 330, 10]
   }
 ]
