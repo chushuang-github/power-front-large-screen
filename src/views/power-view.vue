@@ -10,7 +10,9 @@
     </div>
 
     <div class="right-top"></div>
-    <div class="right-center"></div>
+    <div class="right-center">
+      <BarEcharts :echartDatas="chargingStatistics" />
+    </div>
     <div class="right-bottom"></div>
 
     <div class="center"></div>
@@ -22,10 +24,16 @@
 import { ref } from "vue";
 import PieEcharts from "../components/pie-echarts.vue"
 import LineEcharts from "../components/line-echarts.vue"
-import { chargingPileData, precessMonitoringData } from "../config/home-data"
+import BarEcharts from "../components/bar-echarts.vue"
+import { 
+  chargingPileData, 
+  precessMonitoringData, 
+  chargingStatisticsData 
+} from "../config/home-data"
 
 let charginPile = ref(chargingPileData)
 let precessMonitoring = ref(precessMonitoringData)
+let chargingStatistics = ref(chargingStatisticsData)
 </script>
 
 <style scoped>
@@ -34,6 +42,8 @@ let precessMonitoring = ref(precessMonitoringData)
   width: 100%;
   height: 100%;
   background-image: url("../assets/images/bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .header {
@@ -43,6 +53,8 @@ let precessMonitoring = ref(precessMonitoringData)
   right: 0;
   height: 56px;
   background-image: url("../assets/images/bg_header.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .left-top {
@@ -52,6 +64,8 @@ let precessMonitoring = ref(precessMonitoringData)
   width: 536px;
   height: 443px;
   background-image: url("../assets/images/bg_left-top.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .left-bottom {
@@ -61,6 +75,8 @@ let precessMonitoring = ref(precessMonitoringData)
   width: 536px;
   height: 443px;
   background-image: url("../assets/images/bg_left_bottom.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .right-top {
