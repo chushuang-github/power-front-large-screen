@@ -3,17 +3,19 @@
     <div class="header"></div>
 
     <div class="left-top">
-      <PieEcharts :echartDatas="charginPile" />
+      <PieEcharts :echartDatas="chargingPile" />
     </div>
     <div class="left-bottom">
-      <LineEcharts :echartDatas="precessMonitoring" />
+      <LineEcharts :echartDatas="processMonitoring" />
     </div>
 
     <div class="right-top"></div>
     <div class="right-center">
       <BarEcharts :echartDatas="chargingStatistics" />
     </div>
-    <div class="right-bottom"></div>
+    <div class="right-bottom">
+      <RightBottomSvg :dots="exceptionMonitoring" />
+    </div>
 
     <div class="center"></div>
     <div class="bottom"></div>
@@ -25,15 +27,30 @@ import { ref } from "vue";
 import PieEcharts from "../components/pie-echarts.vue"
 import LineEcharts from "../components/line-echarts.vue"
 import BarEcharts from "../components/bar-echarts.vue"
+import RightBottomSvg from "../components/right-bottom-svg.vue"
+import { getPowerScreenData } from "../services"
 import { 
   chargingPileData, 
-  precessMonitoringData, 
-  chargingStatisticsData 
+  processMonitoringData, 
+  chargingStatisticsData
 } from "../config/home-data"
 
-let charginPile = ref(chargingPileData)
-let precessMonitoring = ref(precessMonitoringData)
+// 充电桩饱和比例
+let chargingPile = ref(chargingPileData)
+// 流程监控
+let processMonitoring = ref(processMonitoringData)
+// 充电数据统计
 let chargingStatistics = ref(chargingStatisticsData)
+// 异常监控
+let exceptionMonitoring = ref([])
+
+getPowerScreenData().then(res => {
+  chargingPile.value = res.data.chargingPile.data
+  processMonitoring.value = res.data.processMonitoring.data
+  chargingStatistics.value = res.data.chargingStatistics.data
+  exceptionMonitoring.value = res.data.exceptionMonitoring.data
+})
+
 </script>
 
 <style scoped>
@@ -54,7 +71,6 @@ let chargingStatistics = ref(chargingStatisticsData)
   height: 56px;
   background-image: url("../assets/images/bg_header.svg");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
 }
 
 .left-top {
@@ -65,7 +81,6 @@ let chargingStatistics = ref(chargingStatisticsData)
   height: 443px;
   background-image: url("../assets/images/bg_left-top.svg");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
 }
 
 .left-bottom {
@@ -76,7 +91,6 @@ let chargingStatistics = ref(chargingStatisticsData)
   height: 443px;
   background-image: url("../assets/images/bg_left_bottom.svg");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
 }
 
 .right-top {
@@ -87,7 +101,6 @@ let chargingStatistics = ref(chargingStatisticsData)
   height: 327px; 
   background-image: url("../assets/images/bg_right_top.svg");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
 }
 
 .right-center {
@@ -98,7 +111,6 @@ let chargingStatistics = ref(chargingStatisticsData)
   height: 327px;
   background-image: url("../assets/images/bg_right_center.svg");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
 }
 
 .right-bottom {
@@ -112,7 +124,6 @@ let chargingStatistics = ref(chargingStatisticsData)
   align-items: center;
   background-image: url("../assets/images/bg_right_bottom.svg");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
 }
 
 .center {
@@ -132,6 +143,5 @@ let chargingStatistics = ref(chargingStatisticsData)
   height: 209px;
   background-image: url("../assets/images/bg_bottom.svg");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
 }
 </style>
