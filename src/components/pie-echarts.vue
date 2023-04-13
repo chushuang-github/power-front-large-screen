@@ -3,8 +3,8 @@
 </template>
 
 <script setup>
-import * as echarts from "echarts"
-import { onMounted, ref } from "vue";
+import { onMounted, ref } from "vue"
+import useEcharts from "../hooks/useEcharts"
 
 const props = defineProps({
   width: {
@@ -21,11 +21,13 @@ const props = defineProps({
   }
 })
 
-const divRef = ref(null)
+let divRef = ref(null)
+let hyChart = null
 onMounted(() => {
-  let myChart = echarts.init(divRef.value, null, { renderer: "svg" })
+  // vue里面的hooks函数，可以在函数里面写
+  hyChart = useEcharts(divRef.value)
   let option = getOption(props.echartDatas)
-  myChart.setOption(option)
+  hyChart.setOption(option)
 })
 
 // 配置项
