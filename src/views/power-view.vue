@@ -20,7 +20,9 @@
     <div class="center">
       <CenterSvg />
     </div>
-    <div class="bottom"></div>
+    <div class="bottom">
+      <BottomPanel :panelItems="dataAnalysis" />
+    </div>
   </main>
 </template>
 
@@ -31,11 +33,14 @@ import LineEcharts from "../components/line-echarts.vue"
 import BarEcharts from "../components/bar-echarts.vue"
 import RightBottomSvg from "../components/right-bottom-svg.vue"
 import CenterSvg from "../components/center-svg.vue"
+import BottomPanel from "../components/bottom-panel.vue"
 import { getPowerScreenData } from "../services"
 import { 
   chargingPileData, 
   processMonitoringData, 
-  chargingStatisticsData
+  chargingStatisticsData,
+  exceptionMonitoringData,
+  dataAnalysisData
 } from "../config/home-data"
 
 // 充电桩饱和比例
@@ -45,13 +50,16 @@ let processMonitoring = ref(processMonitoringData)
 // 充电数据统计
 let chargingStatistics = ref(chargingStatisticsData)
 // 异常监控
-let exceptionMonitoring = ref([])
+let exceptionMonitoring = ref(exceptionMonitoringData)
+// 充电桩数据分析
+let dataAnalysis = ref(dataAnalysisData)
 
 getPowerScreenData().then(res => {
   chargingPile.value = res.data.chargingPile.data
   processMonitoring.value = res.data.processMonitoring.data
   chargingStatistics.value = res.data.chargingStatistics.data
   exceptionMonitoring.value = res.data.exceptionMonitoring.data
+  dataAnalysis.value = res.data.dataAnalysis.data
 })
 
 </script>
