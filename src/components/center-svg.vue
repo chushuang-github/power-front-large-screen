@@ -1194,6 +1194,48 @@
   </div>
 </template>
 
+<script setup>
+import { onMounted } from "vue"
+import gsap from "gsap"
+
+onMounted(() => {
+  // 入场动画
+  let timeline = gsap.timeline()
+  timeline.fromTo(
+    ["#dongxiao"], 
+    {
+      duration: 1,
+      scale: 0.7,
+      y: 50,
+      transformOrigin: "center"
+    }, 
+    {
+      duration: 1,
+      scale: 1,
+      y: 0
+    }
+  ).fromTo(
+    "#center-houes",
+    {
+      duration: 1,
+      scale: 0.6,
+      y: 30,
+      opacity: 0.7,
+      transformOrigin: "bottom"
+    },
+    {
+      duration: 1,
+      scale: 1,
+      y: 0,
+      opacity: 1,
+      transformOrigin: "bottom"
+    },
+    "-=1"   // 提前一秒执行动画
+  )
+})
+
+</script>
+
 <style scoped>
 .cls-1,
 .cls-11,
