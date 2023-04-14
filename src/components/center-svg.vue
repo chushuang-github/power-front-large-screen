@@ -1558,6 +1558,7 @@ onMounted(() => {
 .cls-54 {
   fill: #fff;
   opacity: 0.9;
+  will-change: opacity;
 }
 
 /* 编写点的样式 */
@@ -1566,12 +1567,14 @@ onMounted(() => {
   fill: #fff;
   opacity: 0.9;
   filter: url(#blue-filter-2);
+  will-change: opacity;
 }
 /* 橙色点 */
 .cus-cls-orange {
   fill: #fff;
   opacity: 0.9;
   filter: url(#orange-filter-2);
+  will-change: opacity;
 }
 
 .cls-40 {

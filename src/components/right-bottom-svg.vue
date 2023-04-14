@@ -118,6 +118,8 @@ const props = defineProps({
 .hy-cls-3,
 .hy-cls-4 {
   fill: #f98800;
+  /* 告诉浏览器该元素将会改变哪些属性进行动画，让浏览器提前做好优化的准备 (比较消耗内存) */
+  will-change: opacity;
 }
 
 .hy-cls-3 {
