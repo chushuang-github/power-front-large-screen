@@ -9,7 +9,9 @@
       <LineEcharts :echartDatas="processMonitoring" />
     </div>
 
-    <div class="right-top"></div>
+    <div class="right-top">
+      <RightTopPanel :panelItems="chargingTop4" :percentage="percentage" />
+    </div>
     <div class="right-center">
       <BarEcharts :echartDatas="chargingStatistics" />
     </div>
@@ -34,13 +36,15 @@ import BarEcharts from "../components/bar-echarts.vue"
 import RightBottomSvg from "../components/right-bottom-svg.vue"
 import CenterSvg from "../components/center-svg.vue"
 import BottomPanel from "../components/bottom-panel.vue"
+import RightTopPanel from "../components/right-top-panel.vue"
 import { getPowerScreenData } from "../services"
 import { 
   chargingPileData, 
   processMonitoringData, 
   chargingStatisticsData,
   exceptionMonitoringData,
-  dataAnalysisData
+  dataAnalysisData,
+  chargingTop4Data
 } from "../config/home-data"
 
 // 充电桩饱和比例
@@ -53,13 +57,19 @@ let chargingStatistics = ref(chargingStatisticsData)
 let exceptionMonitoring = ref(exceptionMonitoringData)
 // 充电桩数据分析
 let dataAnalysis = ref(dataAnalysisData)
+// 充电桩Top4占比
+let chargingTop4 = ref(chargingTop4Data)
+let percentage = ref(0)
 
+// 网络请求
 getPowerScreenData().then(res => {
   chargingPile.value = res.data.chargingPile.data
   processMonitoring.value = res.data.processMonitoring.data
   chargingStatistics.value = res.data.chargingStatistics.data
   exceptionMonitoring.value = res.data.exceptionMonitoring.data
   dataAnalysis.value = res.data.dataAnalysis.data
+  chargingTop4.value = res.data.chargingTop4.data
+  percentage.value = res.data.chargingTop4.totalPercentage
 })
 
 </script>

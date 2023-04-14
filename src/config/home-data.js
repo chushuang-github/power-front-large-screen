@@ -134,3 +134,32 @@ export const dataAnalysisData = [
     isUp: false,
   }
 ]
+
+// 充电桩Top4占比
+export const chargingTop4Data = [
+  {
+    id: 1,
+    name: "深圳",
+    percentage: "0%",
+  },
+  {
+    id: 2,
+    name: "广州",
+    percentage: "0%",
+  },
+  {
+    id: 3,
+    name: "东莞",
+    percentage: "0%",
+  },
+  {
+    id: 4,
+    name: "佛山",
+    percentage: "0%",
+  },
+  {
+    id: 5,
+    name: "其它",
+    percentage: "0%",
+  }
+]
