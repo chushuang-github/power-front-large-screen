@@ -4,4 +4,6 @@ body {
   height: 1080px;
   transform-origin: left top;
   box-sizing: border-box;
+  overflow: hidden;
+  background-color: #0d1356;
 }
